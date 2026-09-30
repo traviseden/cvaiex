@@ -1,0 +1,10 @@
+---
+import type { MusicVenue } from '../data/storefronts';
+interface Props { venue: MusicVenue; }
+const { venue } = Astro.props;
+---
+<section class="music-history" data-music-venue={venue.id}>
+  <h3>{venue.title}</h3><p>A curated, source-verified selection, rather than a ranking or the complete concert archive.</p>
+  <ul>{venue.performers.map(artist => <li><strong>{artist.name}</strong> · {artist.date} · <a href={artist.source}>Source ↗</a>{artist.note && <p class="small-muted">{artist.note}</p>}</li>)}</ul>
+  <p class="small-muted">Source-checked {venue.verifiedAt}. <a href={venue.source}>Venue archive ↗</a></p>
+</section>

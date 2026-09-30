@@ -1,0 +1,21 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+import { events, places, community } from '../../data/content';
+export function getStaticPaths() { return events.map(event => ({ params: { id: event.id }, props: { event } })); }
+const { event } = Astro.props;
+const place = places.find(p => p.id === event.placeId)!;
+const titleWords = event.title.split(' ');
+const lastWord = titleWords.pop();
+---
+<Layout title={`${event.title} — ${event.fullTitle}`} description={event.description} schema={{ '@context': 'https://schema.org', '@type': 'Event', name: event.fullTitle, description: event.description, startDate: event.startDate, endDate: event.endDate, eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode', location: { '@type': 'Place', name: place.name, address: { '@type': 'PostalAddress', streetAddress: place.address.split(',')[0], addressLocality: 'Charlottesville', addressRegion: 'VA', addressCountry: 'US' } }, organizer: { '@type': 'Organization', name: event.organizerName, url: event.organizerUrl }, url: `https://www.cvaiex.org/events/${event.id}/`, sameAs: event.source }}>
+  <main id="main" class="content-main"><a class="back-link" href="/events/">← Meetup archive</a><span class="eyebrow">{event.fullTitle.toUpperCase()}</span><h1>{titleWords.join(' ')}<br /><em>{lastWord}.</em></h1><div class="metadata-list"><span>{event.displayDate}</span><span>{event.displayTime}</span><a href={`/places/${place.id}/`}>{place.name} ↗</a></div>
+    <p class="lead">{event.description}</p><a class="primary-button" href={`/?place=${place.id}`}>Visit the community room <Icon name="arrow" size={18} /></a>
+    {event.registration && <section class="source-note">Registration is required at <a href={event.registration}>be.camp</a>. beCamp is free, including food and drinks. A Meetup RSVP alone is not registration.</section>}
+    <h2>{event.detailHeading}</h2>{event.details.map(detail => <p>{detail}</p>)}
+    <div class="content-grid"><section class="content-card"><span class="eyebrow">THE GATHERING</span><h2>Schedule</h2><ul>{event.schedule.map(item => <li>{item}</li>)}</ul></section><section class="content-card"><span class="eyebrow">YOUR HOSTS</span><h2>Organizers</h2>{event.hostLinks ? event.hostLinks.map(host => <p><a href={host.url}>{host.name}</a></p>) : event.hosts.map(host => <p>{host}</p>)}{event.series === 'Cville AI Explorers' ? <p><a href={community.slack}>Chat with us in #cvilleaiexplorers</a>. The source event invites people who need a Slack invitation to contact the host.</p> : <p><a href={event.organizerUrl}>{event.organizerName} ↗</a></p>}</section></div>
+    {event.placeId === 'studio-ix' && <><h2>Sponsor: Studio IX</h2><p>Studio IX offers a flexible coworking environment with open workspaces, dedicated desks, and private offices. Weekly events and mixers support a collaborative community in a warm industrial space with ample natural light.</p><p>Amenities include high-speed internet, soundproof phone booths, conference rooms, and premium coffee. A community manager is on site weekdays; members have 24/7 access. Tours: <a href="mailto:COWORK@studioix.co">COWORK@studioix.co</a>, <a href="tel:+14342603803">434.260.3803</a>, or <a href="https://www.studioix.co/">studioix.co</a>.</p></>}
+    {event.sponsors && <><h2>Made possible by the community</h2><ul>{event.sponsors.map(sponsor => <li><a href={sponsor.url}>{sponsor.name}</a> — {sponsor.tier}</li>)}</ul><p><a href="https://github.com/becamp/becamp.github.io/milestone/9">Help support beCamp’s event needs ↗</a></p></>}
+    <h2>Original event</h2><p><a href={event.source} target="_blank" rel="noopener noreferrer">Read the original Meetup listing ↗</a></p>{event.additionalSources?.map((source, index) => <p><a href={source} target="_blank" rel="noopener noreferrer">{index === 0 ? 'Saturday Meetup listing' : 'UVA’s event listing'} ↗</a></p>)}<div class="source-note">{event.verification}<br />{event.sourceNote ?? 'This page preserves the event’s substantive public information in a readable format. For the original wording, follow the source link.'}</div>
+  </main>
+</Layout>

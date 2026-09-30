@@ -1,0 +1,25 @@
+# Cville AI Explorers
+
+> Builders, learners, and AI enthusiasts in Charlottesville, Virginia. This static site includes a stylized Three.js city explorer and accessible HTML content.
+
+## Community
+- [About and mission](https://www.cvaiex.org/about/): Activities, participation, sponsors, contact, and code of conduct.
+- [Places](https://www.cvaiex.org/places/): Verified venue descriptions and approximate destination pins.
+- [Events](https://www.cvaiex.org/events/): Imported public event records; the archive is incomplete.
+- [Data and attribution](https://www.cvaiex.org/data/): Geographic sources, licenses, and known coverage limits.
+- [Downtown Mall directory](https://www.cvaiex.org/mall/): Source-linked local businesses, dated photographs, and image attribution.
+
+## Machine-readable data
+- [Community, places, and events JSON](https://www.cvaiex.org/data/content.json)
+- [Readable content Markdown](https://www.cvaiex.org/content.md)
+- [City metadata](https://www.cvaiex.org/data/city-metadata.json)
+- [Storefront catalog](https://www.cvaiex.org/data/storefronts.json): Stable physical slots, independently replaceable business records, and attributed media.
+- [Storefront JSON schema](https://www.cvaiex.org/data/storefronts.schema.json)
+- [Community circuit](https://www.cvaiex.org/data/community-tour.json): Guided stops and camera-leg configuration.
+- [Mall reference metadata](https://www.cvaiex.org/data/mall-reference.json): Video provenance, private frame-extraction status, and observed spatial features.
+
+## Sources
+- [Original community site](https://www.cvaiex.org/)
+- [Charlottesville Technologists](https://www.meetup.com/cville-tech/)
+
+The building snapshot is City of Charlottesville open data. Most venue pins are approximate; UVA School of Data Science uses an OpenStreetMap building-center coordinate. Building height fallbacks and a flat ground plane are visualization choices, not surveyed terrain. The venue rooms and Data Science building model are artistic interpretations. No comprehensive historical event coverage is claimed.

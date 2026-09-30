@@ -1,0 +1,18 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+import { storefrontCatalog as catalog } from '../../data/storefronts';
+import MusicHistory from '../../components/MusicHistory.astro';
+export function getStaticPaths() { return catalog.businesses.map(business => ({ params: { id: business.id }, props: { business } })); }
+const { business } = Astro.props;
+const image = catalog.media.find(image => image.id === business.photoId);
+const music = catalog.musicVenues?.find(venue => venue.id === business.id);
+---
+<Layout title={`${business.name} — Downtown Mall — Cville AI Explorers`} description={business.description} schema={{ '@context': 'https://schema.org', '@type': 'LocalBusiness', name: business.name, description: business.description, address: { '@type': 'PostalAddress', streetAddress: business.address.split(',')[0], addressLocality: 'Charlottesville', addressRegion: 'VA', postalCode: '22902', addressCountry: 'US' }, url: business.website, sameAs: business.sources }}>
+  <main id="main" class="content-main"><a class="back-link" href="/mall/">← Downtown Mall directory</a><span class="eyebrow">{business.category.toUpperCase()} / DOWNTOWN MALL</span><h1>{business.name}<em>.</em></h1><p class="lead">{business.description}</p><div class="metadata-list"><span>{business.address}</span></div>
+    <a class="primary-button" href={`/?place=downtown-mall&walk=1&business=${business.id}`}>Discover the storefront in 3D <Icon name="arrow" size={18} /></a><p><a href={business.website} target="_blank" rel="noopener noreferrer">Visit the official website ↗</a></p>
+    {image && <div class="mall-photo-grid"><figure><img src={image.src} alt={image.alt} /><figcaption>{image.capturedAt} · {image.creator} · <a href={image.licenseUrl}>{image.license}</a> · <a href={image.source}>Original photograph</a><br />{image.changes}</figcaption></figure></div>}
+    <h2>Sources & snapshot</h2><p>Source-checked {business.verifiedAt}. Listing status: {business.operatingStatus}. Check the official site for current details, hours, tickets, or availability.</p><ul>{business.sources.map(source => <li><a href={source}>{source}</a></li>)}</ul><div class="source-note">{catalog.district.layoutNote}</div>
+    {music && <MusicHistory venue={music} />}
+  </main>
+</Layout>

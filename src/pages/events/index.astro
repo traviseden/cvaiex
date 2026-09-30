@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+import { events, archiveStatus, community } from '../../data/content';
+---
+<Layout title="Meetup archive — Cville AI Explorers" description="Explore verified Charlottesville Technologists gatherings at Studio IX, UVA School of Data Science, and Kardinal Hall.">
+  <main id="main" class="content-main"><span class="eyebrow">THE IDEAS LIVE ON.</span><h1>Good things happen<br /><em>when we gather.</em></h1><p class="lead">A growing archive of Charlottesville Technologists events, including Cville AI Explorers. Each meetup is another connection in our little universe.</p><a class="primary-button" href={community.meetup} target="_blank" rel="noopener noreferrer">See upcoming events on Meetup <Icon name="diagonal" size={18} /></a><div class="source-note">{archiveStatus}</div>
+    {events.map(event => <article class="content-card"><span class="eyebrow">{event.series.toUpperCase()} / {event.displayDate.toUpperCase()}</span><h2><a href={`/events/${event.id}/`}>{event.title}</a></h2><p>{event.description}</p><a class="text-link" href={`/events/${event.id}/`}>Step into the story <Icon name="arrow" size={16} /></a></article>)}
+    <section class="future-strip"><h3>Help fill in the constellation.</h3><p>Past event URLs, saved event pages, and organizer exports can help us recover the full venue and event history. <a href={community.slack}>Contact the community on Slack</a>.</p></section>
+  </main>
+</Layout>

@@ -1,0 +1,14 @@
+{
+  "source": "https://www.youtube.com/watch?v=aJVOkmzvzcw",
+  "title": "Downtown Mall Charlottesville VA 2025 Walking Tour | A 50-Year Legacy (1976–2026)",
+  "creator": "Charlottesville Real Estate Guide",
+  "durationSeconds": 901,
+  "developmentFrames": { "count": 180, "intervalSeconds": 5, "width": 384, "location": "references/downtown-mall/ (private development folder, excluded from static deployment)" },
+  "transcript": { "available": false, "note": "The source exposes neither uploaded subtitles nor automatic captions. No caption transcript was available during import." },
+  "observations": [
+    { "startSeconds": 0, "endSeconds": 180, "note": "The eastern-end pavilion has a broad, white tensile canopy over an open-air audience/stage area." },
+    { "startSeconds": 240, "endSeconds": 270, "note": "A long, dark, freestanding chalk wall sits among the central trees, with walking routes on both sides." },
+    { "startSeconds": 300, "endSeconds": 840, "note": "The broad brick pedestrian corridor has a central tree/bench zone, generous side walking lanes, storefronts, and café patios." }
+  ],
+  "interpretation": "Used for original scene geometry and spatial reference. Video frames are not rehosted by the public site; chalk art is original community content. Scene spacing remains compressed and illustrative."
+}

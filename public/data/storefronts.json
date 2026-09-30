@@ -1,0 +1,73 @@
+{
+  "$schema": "/data/storefronts.schema.json",
+  "schemaVersion": 1,
+  "revision": 2,
+  "updatedAt": "2026-09-30T14:00:00Z",
+  "district": {
+    "id": "downtown-mall",
+    "name": "Downtown Mall",
+    "description": "A brick-paved, tree-lined pedestrian gathering place on Main Street, with independent shops, cafés, restaurants, and performance venues.",
+    "layoutNote": "A stylized, compressed walk through selected businesses. Slot positions, façade designs, and street dimensions are illustrative, not surveyed. This is not a complete business directory.",
+    "length": 220,
+    "streetscape": { "width": 36, "treeOffset": 3.0, "treeSpacing": 26, "walkLane": 11.5 },
+    "sources": ["https://en.wikipedia.org/wiki/Downtown_Mall", "https://commons.wikimedia.org/wiki/Category:Charlottesville,_Virginia_Downtown_Mall"],
+    "facts": [
+      { "title": "A street for people", "text": "Main Street’s pedestrian mall stretches across eight blocks, with brick paving and connected pedestrian side streets.", "source": "https://en.wikipedia.org/wiki/Downtown_Mall" },
+      { "title": "A landscape with a history", "text": "Landscape architect Lawrence Halprin designed the pedestrian conversion of East Main Street in the 1970s.", "source": "https://en.wikipedia.org/wiki/Downtown_Mall" },
+      { "title": "The arts on Main Street", "text": "The Paramount and Jefferson theaters are central gathering places, with the outdoor Ting Pavilion at the mall’s eastern end.", "source": "https://en.wikipedia.org/wiki/Downtown_Mall" }
+    ]
+  },
+  "landmarks": [
+    { "id": "ting-pavilion", "name": "Ting Pavilion", "kind": "pavilion", "along": 255, "x": 0, "description": "The outdoor concert venue at the mall’s eastern end, represented by an original tensile-canopy model and a source-linked wall of musical history.", "source": "https://www.tingpavilion.com/" },
+    { "id": "chalk-wall", "name": "The community chalk wall", "kind": "chalkboard", "along": 220, "x": 0, "description": "An original community-themed interpretation of the long black chalk wall visible at 4:00–4:30 in the reference walk. Its drawings are static for now.", "source": "https://www.youtube.com/watch?v=aJVOkmzvzcw&t=240s" }
+  ],
+  "chalkboard": { "heading": "AI Explorers", "lines": ["Build • Share • Explore", "A little city. A big universe.", "Bring a question. Bring an idea."], "cheer": "Go Hoos!", "editable": false, "artNote": "Original books, stars, hills, and classical columns in orange and blue chalk; no official university logos or seals." },
+  "musicVenues": [
+    { "id": "ting-pavilion", "title": "Notable past performers", "verifiedAt": "2026-09-30", "source": "https://www.tingpavilion.com/events-tickets/photo-gallery-past-events", "performers": [
+      { "name": "Andy Frasco & The U.N.", "date": "2025-10-26", "source": "https://archive.org/details/frasco2025-10-26.vwmule", "note": "Live-recording metadata identifies this Ting Pavilion performance as opening for Gov’t Mule." },
+      { "name": "The String Cheese Incident", "date": "2024-05-16", "source": "https://www.tingpavilion.com/events/detail/the-string-cheese-incident-1" },
+      { "name": "Goose", "date": "2024-09-09", "source": "https://www.tingpavilion.com/events/detail/an-evening-with-goose" },
+      { "name": "Old Crow Medicine Show", "date": "2015-05-23", "source": "https://www.tingpavilion.com/events/detail/old-crow-medicine-show" },
+      { "name": "Willie Nelson & Family", "date": "2022-08-09", "source": "https://www.tingpavilion.com/events-tickets/photo-gallery-past-events" },
+      { "name": "Trey Anastasio Band", "date": "2021-09-22", "source": "https://www.tingpavilion.com/events-tickets/photo-gallery-past-events" },
+      { "name": "Wilco", "date": "2019-11-08", "source": "https://www.tingpavilion.com/events-tickets/photo-gallery-past-events" },
+      { "name": "Alabama Shakes", "date": "2015-06-09", "source": "https://www.tingpavilion.com/events-tickets/photo-gallery-past-events" },
+      { "name": "The Avett Brothers", "date": "2016-10-30", "source": "https://www.tingpavilion.com/events-tickets/photo-gallery-past-events" },
+      { "name": "John Prine", "date": "2010-10-16", "source": "https://www.tingpavilion.com/events-tickets/photo-gallery-past-events" }
+    ] },
+    { "id": "jefferson-theater", "title": "Notable past performers", "verifiedAt": "2026-09-30", "source": "https://www.jeffersontheater.com/events/photo-gallery-past-events", "performers": [
+      { "name": "Billy Strings", "date": "2019-11-07", "source": "https://www.jeffersontheater.com/events/photo-gallery-past-events" },
+      { "name": "Brandi Carlile", "date": "2015-03-13", "source": "https://www.jeffersontheater.com/events/photo-gallery-past-events" },
+      { "name": "Ben Folds", "date": "2017-04-15", "source": "https://www.jeffersontheater.com/events/photo-gallery-past-events" },
+      { "name": "The Wood Brothers", "date": "2025-02-17", "source": "https://www.jeffersontheater.com/events/photo-gallery-past-events" },
+      { "name": "Andy Frasco & The U.N.", "date": "2022-10-28", "source": "https://www.jeffersontheater.com/events/photo-gallery-past-events" },
+      { "name": "Sharon Van Etten", "date": "2022-04-21", "source": "https://www.jeffersontheater.com/events/photo-gallery-past-events" },
+      { "name": "Lucinda Williams", "date": "2023-05-02", "source": "https://www.jeffersontheater.com/events/photo-gallery-past-events" },
+      { "name": "Yo La Tengo", "date": "2023-03-16", "source": "https://www.jeffersontheater.com/events/photo-gallery-past-events" }
+    ] }
+  ],
+  "media": [
+    { "id": "mall-2008", "fileTitle": "File:2008-0830-Charlottesville-DowntownMall.jpg", "src": "/media/mall/mall-2008.jpg", "alt": "Brick paving, trees, and storefronts on the Downtown Mall in 2008", "creator": "Bobak Ha’Eri", "license": "CC BY 3.0", "licenseUrl": "https://creativecommons.org/licenses/by/3.0/", "source": "https://commons.wikimedia.org/wiki/File:2008-0830-Charlottesville-DowntownMall.jpg", "capturedAt": "2008-08-30", "changes": "Resized for display; may be cropped by the viewer." },
+    { "id": "mall-2023", "fileTitle": "File:Downtown Mall Cville 2023.jpg", "src": "/media/mall/mall-2023.jpg", "alt": "The Downtown Mall pedestrian streetscape photographed in 2023", "creator": "Packer1028", "license": "CC0", "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/", "source": "https://commons.wikimedia.org/wiki/File:Downtown_Mall_Cville_2023.jpg", "capturedAt": "2023-01-03", "changes": "Resized for display; may be cropped by the viewer." },
+    { "id": "paramount-exterior", "fileTitle": "File:Paramount Theater (Charlottesville, Virginia).jpg", "src": "/media/mall/paramount-exterior.jpg", "alt": "The Paramount Theater façade and marquee in 2017", "creator": "AgnosticPreachersKid", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/", "source": "https://commons.wikimedia.org/wiki/File:Paramount_Theater_(Charlottesville,_Virginia).jpg", "capturedAt": "2017-08-28", "changes": "Resized for display; may be cropped by the viewer. Photo derivatives retain CC BY-SA 4.0." },
+    { "id": "jefferson-exterior", "fileTitle": "File:The Jefferson Theater 110 East Main Street Charlottesville VA June 2022 01.jpg", "src": "/media/mall/jefferson-exterior.jpg", "alt": "The Jefferson Theater at 110 East Main Street in 2022", "creator": "Artaxerxes", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/", "source": "https://commons.wikimedia.org/wiki/File:The_Jefferson_Theater_110_East_Main_Street_Charlottesville_VA_June_2022_01.jpg", "capturedAt": "2022-06-30", "changes": "Resized for display; may be cropped by the viewer. Photo derivatives retain CC BY-SA 4.0." }
+  ],
+  "businesses": [
+    { "id": "mudhouse-downtown", "name": "Mudhouse", "category": "Coffee", "address": "213 West Main Street, Charlottesville, VA 22902", "website": "https://mudhouse.com/", "description": "Specialty coffee on the Downtown Mall. Mudhouse began as a Charlottesville coffee cart in 1993 and grew into a roastery and cafés.", "aliases": ["mud house", "coffee"], "operatingStatus": "listed", "verifiedAt": "2026-09-30", "sources": ["https://mudhouse.com/pages/location-hours", "https://mudhouse.com/pages/about"], "photoId": null },
+    { "id": "millers-downtown", "name": "Miller’s Downtown", "category": "Food & live music", "address": "109 West Main Street, Charlottesville, VA 22902", "website": "https://www.millersdowntown.com/", "description": "Eat, drink, listen. A downtown restaurant, bar, and live-music gathering place serving the community since 1981.", "aliases": ["millers", "miller's"], "operatingStatus": "listed", "verifiedAt": "2026-09-30", "sources": ["https://www.millersdowntown.com/"], "photoId": null },
+    { "id": "jefferson-theater", "name": "The Jefferson Theater", "category": "Live music", "address": "110 East Main Street, Charlottesville, VA 22902", "website": "https://www.jeffersontheater.com/", "description": "A historic live-music venue on the pedestrian mall. Its official site lists concerts, ticket information, and visitor guidance.", "aliases": ["jefferson", "the jefferson"], "operatingStatus": "listed", "verifiedAt": "2026-09-30", "sources": ["https://www.jeffersontheater.com/plan-your-visit/directions-parking"], "photoId": "jefferson-exterior" },
+    { "id": "paramount-theater", "name": "The Paramount Theater", "category": "Performing arts", "address": "215 East Main Street, Charlottesville, VA 22902", "website": "https://www.theparamount.net/", "description": "The historic nonprofit theater presents arts, education, film, and live performance. The Paramount has been part of Charlottesville’s downtown story since 1931.", "aliases": ["paramount", "the paramount"], "operatingStatus": "listed", "verifiedAt": "2026-09-30", "sources": ["https://www.theparamount.net/", "https://www.theparamount.net/about/"], "photoId": "paramount-exterior" },
+    { "id": "rapture", "name": "Rapture", "category": "Food & nightlife", "address": "303 East Main Street, Charlottesville, VA 22902", "website": "https://www.rapturerestaurant.com/", "description": "Southern-inspired food, craft beverages, pool tables, music, and nightlife on the Downtown Mall, with indoor and outdoor seating.", "aliases": ["rapture restaurant"], "operatingStatus": "listed", "verifiedAt": "2026-09-30", "sources": ["https://www.rapturerestaurant.com/"], "photoId": null },
+    { "id": "new-dominion-bookshop", "name": "New Dominion Bookshop", "category": "Books", "address": "404 East Main Street, Charlottesville, VA 22902", "website": "https://ndbookshop.com/", "description": "An independent bookshop with a curated selection of new books and gifts, author events, special orders, and personalized recommendations.", "aliases": ["new dominion", "bookshop", "books"], "operatingStatus": "listed", "verifiedAt": "2026-09-30", "sources": ["https://ndbookshop.com/"], "photoId": null },
+    { "id": "tilmans", "name": "Tilman’s", "category": "Cheese & wine", "address": "406 East Main Street, Charlottesville, VA 22902", "website": "https://www.tilmanscheeseandwine.com/", "description": "Cheese, wine, and snacks on East Main Street, with food and drink menus, catering, private events, and a wine club.", "aliases": ["tilmans", "tilman's", "cheese and wine"], "operatingStatus": "listed", "verifiedAt": "2026-09-30", "sources": ["https://www.tilmanscheeseandwine.com/"], "photoId": null }
+  ],
+  "slots": [
+    { "id": "main-213-west", "address": "213 West Main Street", "side": "north", "along": 18, "width": 15, "height": 9, "businessId": "mudhouse-downtown", "appearance": { "brick": "#5e4738", "trim": "#b4b49a", "accent": "#b6f36a", "awning": true } },
+    { "id": "main-109-west", "address": "109 West Main Street", "side": "south", "along": 45, "width": 14, "height": 12, "businessId": "millers-downtown", "appearance": { "brick": "#684941", "trim": "#bdac94", "accent": "#e9bb7e", "awning": true } },
+    { "id": "main-110-east", "address": "110 East Main Street", "side": "south", "along": 78, "width": 20, "height": 13, "businessId": "jefferson-theater", "appearance": { "brick": "#655652", "trim": "#c4c1ae", "accent": "#c7b6f0", "awning": false } },
+    { "id": "main-215-east", "address": "215 East Main Street", "side": "north", "along": 112, "width": 20, "height": 13, "businessId": "paramount-theater", "appearance": { "brick": "#736050", "trim": "#d2c7a0", "accent": "#f5d389", "awning": false } },
+    { "id": "main-303-east", "address": "303 East Main Street", "side": "north", "along": 145, "width": 17, "height": 10, "businessId": "rapture", "appearance": { "brick": "#624543", "trim": "#999684", "accent": "#d4a589", "awning": true } },
+    { "id": "main-404-east", "address": "404 East Main Street", "side": "south", "along": 175, "width": 13, "height": 10, "businessId": "new-dominion-bookshop", "appearance": { "brick": "#705748", "trim": "#c8b7a1", "accent": "#a8d5c2", "awning": true } },
+    { "id": "main-406-east", "address": "406 East Main Street", "side": "south", "along": 192, "width": 13, "height": 9, "businessId": "tilmans", "appearance": { "brick": "#786457", "trim": "#c6bca3", "accent": "#d6c294", "awning": true } }
+  ]
+}

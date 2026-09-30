@@ -1,0 +1,35 @@
+{
+  "retrievedAt": "2026-09-30T09:54:02.191Z",
+  "bounds": [
+    -78.526,
+    38.016,
+    -78.462,
+    38.055
+  ],
+  "origin": [
+    -78.489,
+    38.03
+  ],
+  "buildings": 10351,
+  "polygons": 10360,
+  "sourcedHeights": 10276,
+  "estimatedHeights": 75,
+  "roadSegments": 2227,
+  "sources": [
+    {
+      "name": "City of Charlottesville — Existing Structure Area",
+      "url": "https://gisweb.charlottesville.org/cvgisweb/rest/services/OpenData_1/MapServer/59",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "item": "431d3b5cde454e9f9c65725cc2f44c97"
+    },
+    {
+      "name": "City of Charlottesville — Road Centerlines",
+      "url": "https://gisweb.charlottesville.org/cvgisweb/rest/services/OpenData_1/MapServer/29",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "item": "5ea50546852444a890dc55c9d68104f8",
+      "attribution": "City of Charlottesville Open Data Portal"
+    }
+  ]
+}

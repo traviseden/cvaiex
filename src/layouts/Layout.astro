@@ -1,0 +1,42 @@
+---
+import '../styles/global.css';
+import Icon from '../components/Icon.astro';
+interface Props { title?: string; description?: string; explorer?: boolean; schema?: Record<string, unknown>; }
+const { title = 'Cville AI Explorers — A city of possibilities', description = 'Explore Charlottesville among the stars. Fly through a real 3D city, discover local meetup venues, and build with the Cville AI Explorers community.', explorer = false, schema } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0c131b" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/social.svg', Astro.site)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />}
+  </head>
+  <body class:list={[explorer ? 'explorer-page' : 'content-page']}>
+    <a class="skip-link" href={explorer ? '#explorer-content' : '#main'}>Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Cville AI Explorers home">
+        <span class="brand-mark">✳</span><span>cville<span class="brand-ai">ai</span><small>EXPLORERS</small></span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="/" class:list={[Astro.url.pathname === '/' && 'active']}>Explore <span class="nav-dot"></span></a>
+        <a href="/events/" class:list={[Astro.url.pathname.startsWith('/events') && 'active']}>Meetups</a>
+        <a href="/about/" class:list={[Astro.url.pathname === '/about/' && 'active']}>Our community</a>
+      </nav>
+      <a class="header-join" href="https://www.meetup.com/cville-tech/" target="_blank" rel="noopener noreferrer">Join the explorers <Icon name="diagonal" size={16} /></a>
+    </header>
+    <slot />
+    {!explorer && <footer class="content-footer"><span>Made of curiosity. Rooted in Charlottesville.</span><div><a href="/data/">Data & credits</a><a href="/content.md">Plain-text content</a><a href="https://cville.slack.com/archives/C08DTL1TS1K">Cville Slack ↗</a></div></footer>}
+  </body>
+</html>

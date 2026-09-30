@@ -1,0 +1,12 @@
+{
+  "id": "community-circuit",
+  "name": "The community circuit",
+  "description": "A guided flight through Charlottesville’s gathering places. Pause at every stop, explore if you like, then continue when you’re ready.",
+  "stops": [
+    { "placeId": "studio-ix", "note": "Our community home: a place to build, share, and follow a good idea.", "cameraOffset": [160, 145, 210], "durationMs": 5500 },
+    { "placeId": "downtown-mall", "note": "The pedestrian heart of Charlottesville: central trees, side walking lanes, and local storefronts.", "cameraOffset": [180, 175, 240], "durationMs": 6500 },
+    { "placeId": "ting-pavilion", "note": "The open-air stage and chalk wall at the mall’s east end. Every show adds another story.", "cameraOffset": [125, 120, 170], "durationMs": 5000 },
+    { "placeId": "kardinal-hall", "note": "A seat at the table for First Wednesdays: no slides, just good conversations.", "cameraOffset": [160, 150, 200], "durationMs": 7000 },
+    { "placeId": "uva-data-science", "note": "A school without walls, and a home for beCamp’s community-built agenda.", "cameraOffset": [150, 145, 200], "durationMs": 8000 }
+  ]
+}

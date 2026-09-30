@@ -1,0 +1,16 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+import { places, events } from '../../data/content';
+export function getStaticPaths() { return places.map(place => ({ params: { id: place.id }, props: { place } })); }
+const { place } = Astro.props;
+const related = events.filter(event => event.placeId === place.id);
+---
+<Layout title={`${place.name} — Cville AI Explorers`} description={place.description} schema={{ '@context': 'https://schema.org', '@type': 'Place', name: place.name, description: place.description, address: place.address, url: `https://www.cvaiex.org/places/${place.id}/` }}>
+  <main id="main" class="content-main"><a class="back-link" href="/places/">← All destinations</a><span class="eyebrow">{place.kind.toUpperCase()} / {place.district}</span><h1>{place.name}<em>.</em></h1><p class="lead">{place.description}</p><div class="metadata-list"><span>{place.address}</span></div><a class="primary-button" href={`/?place=${place.id}`}>Explore in 3D <Icon name="arrow" size={18} /></a>
+    {place.pronunciation && <p>Pronounced “{place.pronunciation}.”</p>}
+    {place.room && <section class="content-card"><h2>{place.experience === 'outdoor' ? 'Step outside onto Main Street.' : 'Step into the community room.'}</h2><p>{place.experience === 'outdoor' ? 'Walk the outdoor pedestrian mall, discover JSON-backed local storefronts, and explore source-linked photographs and stories. Travel to the destination, then choose “Walk the Downtown Mall.”' : `Our stylized ${place.shortName} room brings local gatherings into a cosmic exhibition space. Travel to the venue in the explorer, then choose “Enter the community room” and “Walk inside.”`}</p>{place.experience === 'outdoor' && <a class="text-link" href="/mall/">Businesses, photographs & sources <Icon name="arrow" size={16} /></a>}</section>}
+    <h2>From the event archive</h2>{related.length ? related.map(event => <article class="content-card"><span class="eyebrow">{event.displayDate.toUpperCase()}</span><h3><a href={`/events/${event.id}/`}>{event.title}</a></h3><p>{event.fullTitle}</p><a class="text-link" href={`/events/${event.id}/`}>Read this event <Icon name="arrow" size={16} /></a></article>) : <p>Event history for this destination is awaiting verification and import. Landmark destinations don’t imply a past meetup took place here.</p>}
+    <h2>Sources & location</h2><p><a href={place.source} target="_blank" rel="noopener noreferrer">View the source ↗</a></p><div class="source-note">{place.coordinateStatus}<br />Approximate pin: {place.coordinates[1].toFixed(4)}° N, {Math.abs(place.coordinates[0]).toFixed(4)}° W.</div>
+  </main>
+</Layout>

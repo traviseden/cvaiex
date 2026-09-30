@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+import { places } from '../../data/content';
+---
+<Layout title="Places to explore — Cville AI Explorers" description="Discover Charlottesville community hubs, meetup venues, and landmarks. Travel to Studio IX, UVA School of Data Science, Downtown Mall, and Kardinal Hall.">
+  <main id="main" class="content-main"><span class="eyebrow">REAL PLACES. NEW PERSPECTIVES.</span><h1>A city full of<br /><em>connections.</em></h1><p class="lead">Our first destinations. Community spaces, local icons, and the places where ideas meet people.</p>
+    <div class="content-grid">{places.map(place => <article class="content-card"><span class="eyebrow">{place.kind.toUpperCase()} / {place.district}</span><h2><a href={`/places/${place.id}/`}>{place.name}</a></h2><p>{place.description}</p><a class="text-link" href={`/places/${place.id}/`}>Discover this place <Icon name="arrow" size={16} /></a></article>)}</div>
+    <section class="future-strip"><h3>There’s a bigger universe ahead.</h3><p>Monticello, Albemarle County, and the mountains are future chapters. This first iteration stays close to Charlottesville.</p></section>
+  </main>
+</Layout>

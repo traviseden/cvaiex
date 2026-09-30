@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { places, events, community, rooms } from '../data/content';
+import { storefrontCatalog } from '../data/storefronts';
+---
+<Layout explorer schema={{ '@context': 'https://schema.org', '@type': 'Organization', name: community.name, url: 'https://www.cvaiex.org/', description: community.tagline, sameAs: [community.meetup, community.slack] }}>
+  <main class="explorer" id="main">
+    <div class="space-background" aria-hidden="true"><div class="nebula nebula-one"></div><div class="nebula nebula-two"></div></div>
+    <div id="world" aria-label="Interactive three-dimensional Charlottesville" role="region"></div>
+    <div class="world-vignette" aria-hidden="true"></div>
+    <div class="map-labels" id="map-labels" aria-label="Map destinations"></div>
+    <div class="top-readout"><span><i class="live-dot"></i> CHARLOTTESVILLE, VA</span><span>38.0300° N &nbsp; 78.4890° W</span></div>
+    <section class="intro" id="explorer-content">
+      <div class="eyebrow"><span class="mini-line"></span> LOCAL ROOTS. LIMITLESS POSSIBILITIES.</div>
+      <h1>A little city.<br />A <em>big universe.</em></h1>
+      <p>Curious minds. Real-world connections.<br />A whole new way to explore our corner of it.</p>
+      <div class="intro-actions"><button class="primary-button" id="explore-button">Let’s explore <Icon name="arrow" /></button><button class="tour-start" id="tour-start" disabled><Icon name="play" size={15} /> Take the tour</button></div>
+      <div class="intro-note"><span class="tiny-orbit">✧</span> Charlottesville, reimagined among the stars.</div>
+      <div class="community-chip"><span class="avatar-stack"><b>O</b><b>M</b><b>✳</b></span><span>For builders, dreamers,<br /><strong>and the beautifully curious.</strong></span></div>
+    </section>
+    <aside class="explorer-tools" aria-label="Explorer tools">
+      <button class="tool-button" id="overview-button" aria-label="Return to city overview" title="City overview"><Icon name="globe" /></button>
+      <button class="tool-button" id="flight-button" aria-label="Start first-person flight" title="First-person flight"><Icon name="compass" /></button>
+      <button class="tool-button" id="motion-button" aria-label="Reduce animation" aria-pressed="false" title="Reduce animation"><Icon name="moon" /></button>
+      <span class="tool-divider"></span>
+      <button class="tool-button" id="help-button" aria-label="Show flight controls" title="Controls"><Icon name="help" /></button>
+    </aside>
+    <section id="tour-panel" class="tour-panel" hidden aria-labelledby="tour-title">
+      <div class="tour-heading"><span class="eyebrow">GUIDED COMMUNITY CIRCUIT</span><button id="tour-end" aria-label="End guided tour"><Icon name="close" size={18} /></button></div>
+      <span id="tour-step" class="tour-step"></span><h2 id="tour-title"></h2><p id="tour-note"></p>
+      <progress id="tour-progress" max="1" value="0" aria-label="Tour leg progress"></progress>
+      <button id="tour-enter" class="primary-button" disabled>Explore this place <Icon name="arrow" size={18} /></button>
+      <div class="tour-navigation"><button id="tour-previous">← Previous</button><button id="tour-pause">Pause flight</button><button id="tour-next">Next →</button></div>
+      <p id="tour-status" class="small-muted" role="status"></p>
+    </section>
+    <div class="compass" aria-hidden="true"><span>N</span><div class="compass-ring"><i></i></div></div>
+    <section class="discovery-dock" aria-label="Find a destination">
+      <div class="dock-heading"><span><span class="green-star">✳</span> WHERE WILL YOUR CURIOSITY TAKE YOU?</span><span class="dock-hint">A city worth getting lost in.</span></div>
+      <form id="search-form" class="search-box" role="search">
+        <Icon name="search" size={22} />
+        <label class="sr-only" for="destination-search">Search places and events</label>
+        <input id="destination-search" type="search" placeholder="Find a place, a meetup, a spark of inspiration…" autocomplete="off" aria-controls="search-results" />
+        <span class="keycap" aria-hidden="true">/</span>
+        <button type="button" class="voice-button" id="voice-button" aria-label="Speak a destination" title="Speak a destination"><Icon name="mic" size={19} /></button>
+        <button type="submit" class="search-go" aria-label="Search destinations"><Icon name="arrow" size={18} /></button>
+      </form>
+      <div id="search-results" class="search-results" hidden></div>
+      <div class="destination-grid">
+        {places.slice(0, 3).map((place, index) => <button class="destination-card" data-destination={place.id} style={`--place-color: ${place.color}`}>
+          <span class:list={['destination-art', `art-${place.id}`]} aria-hidden="true"><span class="art-orbit"></span><span class="art-building"></span><span class="art-stars">· &nbsp; ✦ &nbsp; ·</span></span>
+          <span class="destination-copy"><span class="destination-category">{index === 0 ? 'OUR COMMUNITY HOME' : place.kind.toUpperCase()}</span><strong>{place.shortName}</strong><span class="destination-detail">{index === 0 ? 'Ideas happen here.' : index === 1 ? 'Where the people make beCamp.' : 'The heart of our little city.'}</span></span>
+          <span class="destination-arrow"><Icon name="diagonal" size={17} /></span>
+        </button>)}
+      </div>
+    </section>
+    <aside id="destination-panel" class="destination-panel" hidden aria-labelledby="destination-title">
+      <button class="panel-close" id="close-destination" aria-label="Close destination"><Icon name="close" size={18} /></button>
+      <span class="eyebrow" id="destination-kind"></span>
+      <h2 id="destination-title"></h2><p id="destination-description"></p>
+      <div class="destination-address"><Icon name="pin" size={16} /><span id="destination-address"></span></div>
+      <button class="primary-button" id="enter-room">Enter the community room <Icon name="arrow" size={18} /></button>
+      <a id="destination-page" class="text-link" href="/places/">Place details & sources <Icon name="diagonal" size={15} /></a>
+    </aside>
+    <div class="flight-hud" id="flight-hud" hidden><span id="flight-mode">FREE FLIGHT</span><span>WASD move · arrows look · Space / C altitude · Shift boost</span><button id="exit-flight">Return to overview</button></div>
+    <div class="crosshair" id="crosshair" hidden aria-hidden="true">+</div>
+    <div class="touch-controls" id="touch-controls" hidden aria-label="Touch flight controls"><button data-move="KeyW" aria-label="Move forward">↑</button><button data-move="KeyA" aria-label="Move left">←</button><button data-move="KeyS" aria-label="Move backward">↓</button><button data-move="KeyD" aria-label="Move right">→</button><button data-move="Space" aria-label="Ascend">＋</button><button data-move="KeyC" aria-label="Descend">−</button></div>
+    <div class="scene-status" id="scene-status" role="status">Charting our little universe…</div>
+    <footer class="explorer-footer"><span><i class="live-dot"></i> BUILT FOR THE CURIOUS</span><span class="footer-center">REAL PLACES. NEW POSSIBILITIES.</span><a href="/data/">City data & credits <Icon name="diagonal" size={12} /></a></footer>
+  </main>
+  <dialog id="help-dialog" class="glass-dialog">
+    <button class="dialog-close" data-close-dialog aria-label="Close controls"><Icon name="close" /></button>
+    <span class="eyebrow">YOUR FLIGHT MANUAL</span><h2>Follow your curiosity.</h2>
+    <p>Drag the city to orbit. Scroll to zoom. Choose a destination to travel there, or switch to first-person flight.</p>
+    <dl class="controls-list"><div><dt>W A S D</dt><dd>Move / strafe</dd></div><div><dt>Arrow keys</dt><dd>Look left, right, up, down</dd></div><div><dt>Mouse / touch drag</dt><dd>Look around</dd></div><div><dt>Space / C</dt><dd>Ascend / descend in flight</dd></div><div><dt>Shift</dt><dd>Move faster</dd></div><div><dt>E</dt><dd>Discover a nearby exhibit</dd></div><div><dt>Escape</dt><dd>Release mouse / close panels</dd></div><div><dt>/</dt><dd>Find a destination</dd></div></dl>
+    <p class="small-muted">On touch devices, use the on-screen flight controls. For calmer travel, enable reduced animation in the toolbar.</p>
+  </dialog>
+  <dialog id="room-dialog" class="room-dialog">
+    <div id="room-world" aria-label="Stylized Studio IX community room" role="region"></div>
+    <div class="room-shade"></div>
+    <button class="room-exit" data-close-dialog><Icon name="arrow" size={18} /> Back to the city</button>
+    <span class="room-location"><i class="live-dot"></i> <span id="room-location-name">STUDIO IX / COMMUNITY ROOM</span></span>
+    <div class="surface-toolbar" aria-label="Venue exploration controls">
+      <button id="surface-mode-button" aria-pressed="false">Walk inside</button>
+      <button id="surface-directory-button">Exhibits</button>
+      <button id="surface-reset-button" title="Return to the walking entrance">Entrance</button>
+      <button id="surface-capture-button" title="Capture the mouse for first-person looking">Mouse-look</button>
+      <button id="surface-reload-button" hidden title="Reload the JSON storefront catalog">Refresh storefronts</button>
+    </div>
+    <p id="surface-error" class="surface-error" hidden role="status"></p>
+    {rooms.map(room => {
+      const event = events.find(item => item.id === room.eventId)!;
+      return <section class="room-content" data-room-place={room.placeId} hidden={room.placeId !== 'studio-ix'}><span class="eyebrow">{room.eyebrow}</span><h2 id={`room-title-${room.placeId}`}>{room.heading[0]}<br /><em>{room.heading[1]}</em></h2><p>{room.intro}</p>
+        <article class="room-event"><span class="destination-category">{room.category}</span><h3>{event.title}</h3><span class="event-date">{event.displayDate}</span><p>{event.description}</p><a class="primary-button" href={`/events/${event.id}/`}>Explore this meetup <Icon name="arrow" size={18} /></a></article>
+        {event.registration ? <a class="text-link" href={event.registration} target="_blank" rel="noopener noreferrer">Register at be.camp <Icon name="diagonal" size={15} /></a> : <a class="text-link" href={event.series === 'First Wednesdays' ? 'https://cville.slack.com' : community.slack} target="_blank" rel="noopener noreferrer">Continue on Cville Slack <Icon name="diagonal" size={15} /></a>}
+        <p class="small-muted">{room.note}</p>
+      </section>;
+    })}
+    <section class="room-content" data-room-place="downtown-mall" hidden>
+      <span class="eyebrow">MAIN STREET. MADE FOR PEOPLE.</span><h2 id="room-title-downtown-mall">A little stroll.<br /><em>A lot to discover.</em></h2><p>{storefrontCatalog.district.description}</p>
+      <article class="room-event"><h3>Out on the Downtown Mall</h3><p>Walk beneath the trees, look at a storefront, and press E or click its sign. Choose Places to jump to a business, or discover the story board and its photographs.</p><a class="primary-button" href="/mall/">Business directory & photographs <Icon name="arrow" size={18} /></a></article>
+      <p class="small-muted">{storefrontCatalog.district.layoutNote}</p>
+    </section>
+    <div class="surface-hud" id="surface-hud" hidden><span class="surface-crosshair" aria-hidden="true">+</span><button id="surface-interact" hidden></button><span id="surface-status" role="status"></span></div>
+    <aside class="surface-directory" id="surface-directory" hidden aria-labelledby="surface-directory-title"><button id="surface-directory-close" class="surface-close" aria-label="Close places and exhibits"><Icon name="close" size={18} /></button><span class="eyebrow">FOLLOW YOUR CURIOSITY</span><h3 id="surface-directory-title">In this room</h3><div id="surface-directory-list"></div><p id="surface-revision" class="small-muted"></p></aside>
+    <aside class="surface-details" id="surface-details" hidden aria-labelledby="surface-details-title"><button id="surface-details-close" class="surface-close" aria-label="Close discovery"><Icon name="close" size={18} /></button><span class="eyebrow" id="surface-details-title"></span><div id="surface-details-body"></div></aside>
+    <div class="surface-touch" id="surface-touch" hidden aria-label="Touch walking controls"><div class="surface-pad"><span>MOVE</span><button data-walk-key="KeyW" aria-label="Walk forward">↑</button><button data-walk-key="KeyA" aria-label="Walk left">←</button><button data-walk-key="KeyS" aria-label="Walk backward">↓</button><button data-walk-key="KeyD" aria-label="Walk right">→</button></div><div class="surface-pad"><span>LOOK</span><button data-walk-key="ArrowUp" aria-label="Look up">↑</button><button data-walk-key="ArrowLeft" aria-label="Look left">←</button><button data-walk-key="ArrowDown" aria-label="Look down">↓</button><button data-walk-key="ArrowRight" aria-label="Look right">→</button></div></div>
+  </dialog>
+  <noscript><section class="no-script"><h2>Explore the community</h2><p>The 3D city needs JavaScript. All of our content is available as ordinary pages.</p><a href="/places/">Browse places →</a><a href="/events/">Read events →</a><a href="/about/">Meet the explorers →</a></section></noscript>
+  <script>
+    import { initExplorer } from '../lib/explorer';
+    initExplorer();
+  </script>
+</Layout>

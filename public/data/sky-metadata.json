@@ -1,0 +1,20 @@
+{
+  "retrievedAt": "2026-09-30T11:02:56.639Z",
+  "revision": "7e720a3de062059d4c5400a379146a601d9010e0",
+  "epoch": "J2000.0",
+  "stars": 5044,
+  "constellations": 88,
+  "columns": [
+    "Hipparcos ID",
+    "right ascension degrees",
+    "declination degrees",
+    "apparent magnitude",
+    "B-V color index"
+  ],
+  "source": "https://github.com/ofrohn/d3-celestial/tree/7e720a3de062059d4c5400a379146a601d9010e0/data",
+  "starsCredit": "XHIP: An Extended Hipparcos Compilation, Anderson & Francis (2012), VizieR V/137D; GeoJSON conversion by Olaf Frohn.",
+  "constellationsCredit": "IAU constellation resources and line modifications by Olaf Frohn, distributed in d3-celestial.",
+  "repositoryLicense": "BSD-3-Clause",
+  "licenseFile": "/data/sky-LICENSE.txt",
+  "modifications": "Compact tuples, normalized numeric attributes; no star coordinates changed in the snapshot. Browser applies precession and local sidereal rotation."
+}

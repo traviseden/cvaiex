@@ -1,0 +1,20 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+import { storefrontCatalog as catalog } from '../../data/storefronts';
+import MusicHistory from '../../components/MusicHistory.astro';
+import reference from '../../../public/data/mall-reference.json';
+---
+<Layout title="Downtown Mall businesses & photographs — Cville AI Explorers" description="Walk Charlottesville’s Downtown Mall, discover local businesses, and explore source-linked photographs and stories of Main Street.">
+  <main id="main" class="content-main"><span class="eyebrow">MAIN STREET. MADE FOR PEOPLE.</span><h1>A little stroll.<br /><em>A lot to discover.</em></h1><p class="lead">{catalog.district.description}</p><a class="primary-button" href="/?place=downtown-mall&walk=1">Walk the mall in 3D <Icon name="arrow" size={18} /></a>
+    <div class="source-note">{catalog.district.layoutNote}<br />Business information is a source-checked snapshot, not live opening-hour or availability data. Catalog revision {catalog.revision}; updated {catalog.updatedAt.slice(0, 10)}.</div>
+    <h2>Along Main Street</h2><div class="content-grid">{catalog.businesses.map(business => <article class="content-card"><span class="eyebrow">{business.category.toUpperCase()}</span><h3><a href={`/mall/${business.id}/`}>{business.name}</a></h3><p>{business.description}</p><p>{business.address}</p><a class="text-link" href={`/mall/${business.id}/`}>Discover this stop <Icon name="arrow" size={16} /></a></article>)}</div>
+    <h2>The mall’s story</h2>{catalog.district.facts.map(fact => <section><h3>{fact.title}</h3><p>{fact.text} <a href={fact.source}>Source ↗</a></p></section>)}
+    <h2>The pavilion & community chalk wall</h2>{catalog.landmarks?.map(landmark => <article class="content-card"><h3>{landmark.name}</h3><p>{landmark.description}</p><a class="text-link" href={`/?place=downtown-mall&walk=1&landmark=${landmark.id}`}>Explore this landmark →</a><p><a href={landmark.source}>Reference & history source ↗</a></p></article>)}
+    {catalog.chalkboard && <section class="content-card"><h3>{catalog.chalkboard.heading}</h3>{catalog.chalkboard.lines.map(line => <p>{line}</p>)}<h3>{catalog.chalkboard.cheer}</h3><p>{catalog.chalkboard.artNote}</p><p class="small-muted">The chalk composition is static for now.</p></section>}
+    <h2>Stages with stories</h2>{catalog.musicVenues?.map(venue => <article class="content-card"><span class="eyebrow">{venue.id === 'ting-pavilion' ? 'TING PAVILION' : 'THE JEFFERSON THEATER'}</span><MusicHistory venue={venue} /></article>)}
+    <h2>Walkthrough reference</h2><p><a href={reference.source}>{reference.title}</a> — {reference.creator}. The development reference includes {reference.developmentFrames.count} low-resolution frames sampled about every five seconds, including the chalk wall at 4:00–4:30. Those frames are kept outside the deployed site.</p><p class="small-muted">{reference.transcript.note}</p>
+    <h2>Photographs & credits</h2><p>These photographs are dated views of the mall and theaters, rather than current images of every storefront. Their individual reuse terms and creators are listed below.</p><div class="mall-photo-grid">{catalog.media.map(image => <figure><img src={image.src} alt={image.alt} loading="lazy" /><figcaption>{image.alt}<br />{image.capturedAt} · {image.creator} · <a href={image.licenseUrl}>{image.license}</a> · <a href={image.source}>Original photograph</a><br />{image.changes}</figcaption></figure>)}</div>
+    <h2>An updateable streetscape</h2><p>Businesses, storefront slots, façade appearance, and photograph references are stored in <a href="/data/storefronts.json">one JSON catalog</a>. <a href="/data/storefronts.schema.json">Its schema</a> describes the bot update format. Physical slot IDs stay stable when a tenant changes; the 3D scene and these directory pages use the same records.</p>
+  </main>
+</Layout>

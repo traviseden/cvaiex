@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { community } from '../data/content';
+---
+<Layout title="Our community — Cville AI Explorers" description={community.tagline}>
+  <main id="main" class="content-main">
+    <span class="eyebrow">LOCAL ROOTS. LIMITLESS POSSIBILITIES.</span>
+    <h1>Curious minds.<br /><em>Better together.</em></h1>
+    <p class="lead">{community.tagline}. We’re a group of builders, learners, and enthusiasts making practical things with AI—and helping each other along the way.</p>
+    <a class="primary-button" href={community.meetup} target="_blank" rel="noopener noreferrer">Find our next meetup <Icon name="diagonal" size={18} /></a>
+    <h2>About us</h2><p>We gather to:</p><ul>{community.goals.map(goal => <li>{goal}</li>)}</ul>
+    <h2>Our mission</h2><p>{community.mission}</p>
+    <div class="content-grid"><section class="content-card"><span class="eyebrow">MAKE. LEARN. SHARE.</span><h2>Activities & directions</h2><ul>{community.activities.map(activity => <li>{activity}</li>)}</ul></section><section class="content-card"><span class="eyebrow">THERE’S A PLACE FOR YOU.</span><h2>Get involved</h2><ul>{community.involvement.map(item => <li>{item}</li>)}</ul></section></div>
+    <h2>Join us</h2><p>Whether you’re actively building AI applications or eager to learn how, there’s a place for you in our community. We emphasize practical skills and implementation while maintaining an inclusive environment for learning.</p>
+    <h2>Contact</h2><p>Cville AI Explorers operates under the <a href={community.meetup}>Charlottesville Technologists meetup</a>. Contact organizers in the <a href={community.slack}>#cvilleaiexplorers</a> channel on <a href="https://cville.slack.com">Cville Slack</a>.</p>
+    <section class="content-card"><span class="eyebrow">OUR SPONSOR & COMMUNITY HOME</span><h2>Studio IX</h2><p>Studio IX is a coworking space in downtown Charlottesville, Virginia, designed for freelancers, entrepreneurs, and remote workers. It offers open workspaces, dedicated desks, and private offices in a warm industrial environment.</p><p>The space fosters a collaborative community through weekly events and mixers. Amenities include high-speed internet, soundproof phone booths, conference rooms, and premium coffee. A community manager is available on weekdays, and members have 24/7 access.</p><p>Interested in a tour? <a href="mailto:COWORK@studioix.co">COWORK@studioix.co</a> · <a href="tel:+14342603803">434.260.3803</a> · <a href="https://www.studioix.co/">studioix.co</a></p><a class="text-link" href="/?place=studio-ix">Visit Studio IX in our cosmic city <Icon name="arrow" size={16} /></a></section>
+    <h2>Code of conduct</h2><p>Cville AI Explorers follows the <a href={community.conduct}>Cville Slack Code of Conduct</a>.</p>
+  </main>
+</Layout>
